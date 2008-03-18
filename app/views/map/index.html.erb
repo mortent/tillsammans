@@ -1,2 +1,13 @@
 <h1>Map#index</h1>
 <p>Find me in app/views/map/index.html.erb</p>
+
+
+<%= GMap.header %>
+
+<%= @map.to_html %>
+
+<%= @map.div( :width => 800, :height => 400) %>
+
+
+
+
