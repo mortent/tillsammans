@@ -1,0 +1,6 @@
+db/tillsammans*
+log/*
+tmp/*
+.DS_Store
+nbproject
+.LCK*
