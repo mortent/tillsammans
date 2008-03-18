@@ -1,0 +1,46 @@
+<h1>New location</h1>
+
+<%= error_messages_for :location %>
+
+<% form_for(@location) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Latitude</b><br />
+    <%= f.text_field :latitude %>
+  </p>
+
+  <p>
+    <b>Longitude</b><br />
+    <%= f.text_field :longitude %>
+  </p>
+
+  <p>
+    <b>Street</b><br />
+    <%= f.text_field :street %>
+  </p>
+
+  <p>
+    <b>Zip</b><br />
+    <%= f.text_field :zip %>
+  </p>
+
+  <p>
+    <b>City</b><br />
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', locations_path %>
