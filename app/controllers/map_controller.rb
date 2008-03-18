@@ -1,9 +1,6 @@
 class MapController < ApplicationController
-
-  #require 'ym4r'
-  #include Ym4r::GoogleMaps
   
-  def index
+  def index    
     @map = GMap.new("bekkmap")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([59.92,10.749],12)    
