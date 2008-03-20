@@ -1,10 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :maps
-
   map.resources :events
 
-  map.resources :locations
-
+  map.resources :maps, :path_prefix => '/admin'
+  map.resources :locations, :path_prefix => '/admin'
+  
+  map.root :controller => 'public'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
