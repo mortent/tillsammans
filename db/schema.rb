@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(:version => 4) do
     t.string   "zip"
     t.string   "city"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "maps", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zoom"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
