@@ -2,7 +2,7 @@ class Location < ActiveRecord::Base
   @@country = 'Norway'
   
   acts_as_mappable
-  before_validation_on_create :geocode_street_city
+  before_validation :geocode_street_city
 
   def to_gmarker
     logger.debug("\nLatitude: #{lat}\nLongitude: #{lng}")
@@ -14,6 +14,8 @@ class Location < ActiveRecord::Base
   private  
   
   def geocode_street_city    
+    return if self.lat && self.lng
+    
     geo = GeoKit::Geocoders::MultiGeocoder.geocode("#{street}, #{city}, #{@@country}")
     if geo.success
       self.lat, self.lng = geo.lat, geo.lng

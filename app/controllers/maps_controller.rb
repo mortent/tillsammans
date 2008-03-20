@@ -1,15 +1,26 @@
 class MapsController < ApplicationController
   # GET /maps
   # GET /maps.xml
-  def index
+  def admin_index
     @maps = Map.find(:all)
-
+  
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @maps }
     end
   end
-
+  
+  def index
+    @map = Map.find_by_name('Oslo')
+    @gmap = @map.to_gmap
+    
+    locations = Location.find(:all)
+    
+    locations.each do |l| 
+    	@gmap.overlay_init(l.to_gmarker)
+    end
+  end
+  
   # GET /maps/1
   # GET /maps/1.xml
   def show
