@@ -1,5 +1,6 @@
 db/tillsammans*
 db/*.sqlite3
+db/schema.rb
 log/*
 tmp/*
 .DS_Store
