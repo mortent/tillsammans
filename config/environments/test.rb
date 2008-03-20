@@ -20,3 +20,6 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+GeoKit::Geocoders::yahoo = 'Vk1yLjnV34EMS5s7pmKl.vkNugSojjEoeeZS44Q0CI2DFBUTZzJXHnbO2Fa2.nFN2f4nv0XwJBUyTQ--'
+GeoKit::Geocoders::google = 'ABQIAAAAWnmpHGMPJ5CaA_wxTZdWgxRi_j0U6kJrkFvY4-OX2XYmEAa76BTMjosZz11_knsqbY5Eet6bd_w64A'

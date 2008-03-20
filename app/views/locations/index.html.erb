@@ -3,8 +3,8 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
+    <th>Lat</th>
+    <th>Lng</th>
     <th>Street</th>
     <th>Zip</th>
     <th>City</th>
@@ -14,8 +14,8 @@
 <% for location in @locations %>
   <tr>
     <td><%=h location.name %></td>
-    <td><%=h location.latitude %></td>
-    <td><%=h location.longitude %></td>
+    <td><%=h location.lat %></td>
+    <td><%=h location.lng %></td>
     <td><%=h location.street %></td>
     <td><%=h location.zip %></td>
     <td><%=h location.city %></td>

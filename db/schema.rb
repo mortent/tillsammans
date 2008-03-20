@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 4) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
+    t.float    "lat"
+    t.float    "lng"
     t.string   "street"
     t.string   "zip"
     t.string   "city"

@@ -1,0 +1,36 @@
+<h1>New map</h1>
+
+<%= error_messages_for :map %>
+
+<% form_for(@map) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <b>Lat</b><br />
+    <%= f.text_field :lat %>
+  </p>
+
+  <p>
+    <b>Lng</b><br />
+    <%= f.text_field :lng %>
+  </p>
+
+  <p>
+    <b>Zoom</b><br />
+    <%= f.text_field :zoom %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', maps_path %>

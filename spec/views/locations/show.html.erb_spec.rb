@@ -6,8 +6,8 @@ describe "/locations/show.html.erb" do
   before(:each) do
     @location = mock_model(Location)
     @location.stub!(:name).and_return("MyString")
-    @location.stub!(:latitude).and_return("9.99")
-    @location.stub!(:longitude).and_return("9.99")
+    @location.stub!(:lat).and_return("9.99")
+    @location.stub!(:lng).and_return("9.99")
     @location.stub!(:street).and_return("MyString")
     @location.stub!(:zip).and_return("MyString")
     @location.stub!(:city).and_return("MyString")

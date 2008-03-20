@@ -6,8 +6,8 @@ describe "/locations/edit.html.erb" do
   before do
     @location = mock_model(Location)
     @location.stub!(:name).and_return("MyString")
-    @location.stub!(:latitude).and_return("9.99")
-    @location.stub!(:longitude).and_return("9.99")
+    @location.stub!(:lat).and_return("9.99")
+    @location.stub!(:lng).and_return("9.99")
     @location.stub!(:street).and_return("MyString")
     @location.stub!(:zip).and_return("MyString")
     @location.stub!(:city).and_return("MyString")
@@ -20,8 +20,8 @@ describe "/locations/edit.html.erb" do
     
     response.should have_tag("form[action=#{location_path(@location)}][method=post]") do
       with_tag('input#location_name[name=?]', "location[name]")
-      with_tag('input#location_latitude[name=?]', "location[latitude]")
-      with_tag('input#location_longitude[name=?]', "location[longitude]")
+      with_tag('input#location_lat[name=?]', "location[lat]")
+      with_tag('input#location_lng[name=?]', "location[lng]")
       with_tag('input#location_street[name=?]', "location[street]")
       with_tag('input#location_zip[name=?]', "location[zip]")
       with_tag('input#location_city[name=?]', "location[city]")
