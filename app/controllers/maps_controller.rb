@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
+
   # GET /maps
   # GET /maps.xml
   def index
@@ -9,7 +10,6 @@ class MapsController < ApplicationController
       format.xml  { render :xml => @maps }
     end
   end
-
   
   # GET /maps/1
   # GET /maps/1.xml
