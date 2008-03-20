@@ -5,3 +5,4 @@ tmp/*
 .DS_Store
 nbproject
 .LCK*
+.project
