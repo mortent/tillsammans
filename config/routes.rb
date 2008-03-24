@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :events
 
-  map.resources :maps, :path_prefix => '/admin'
-  map.resources :locations, :path_prefix => '/admin'
+  map.resources :maps #, :path_prefix => '/admin'
+  map.resources :locations #, :path_prefix => '/admin'
   
   map.root :controller => 'public'
   # The priority is based upon order of creation: first created -> highest priority.
