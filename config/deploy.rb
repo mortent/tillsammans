@@ -8,13 +8,14 @@ set :deploy_to,   "/var/www/rails/#{application}"
 
 set :scm,         :git
 
+# Setup database.yml on app-server. (copy database.yml to #{shared_path} first!)
 namespace :vlad do  
   desc "Copy database configuration to release"  
   remote_task :db_config, :roles => :app do  
       run "cp #{shared_path}/database.yml #{release_path}/config/database.yml"  
   end  
    
-  task :dpl => [:setup, :update, :db_config, :migrate]
+  task :deploy => [:setup, :update, :db_config, :migrate]
 end
 
 set :web_command, "sudo /usr/sbin/apache2ctl"

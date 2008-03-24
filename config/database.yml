@@ -14,10 +14,4 @@ production:
   adapter: mysql
   hostname: localhost
   username: tillsammans
-#  password: ...
-
-## Sqlite3
-#production:
-#  adapter: sqlite3
-#  database: db/production.sqlite3
-#  timeout: 5000
+  password: UPDATE_ME_YOU_TOOL!
