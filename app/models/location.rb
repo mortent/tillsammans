@@ -5,7 +5,6 @@ class Location < ActiveRecord::Base
   before_validation :geocode_street_city
 
   def to_gmarker
-    logger.debug("\nLatitude: #{lat}\nLongitude: #{lng}")
     GMarker.new([lat, lng], :title => name, :info_window => description)  
   end
 

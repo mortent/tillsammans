@@ -14,5 +14,10 @@ class PublicController < ApplicationController
     events.each do |e|
       @gmap.overlay_init(e.to_gmarker)
     end
+    
+    clients = Client.find(:all)
+    clients.each do |c|
+      @gmap.overlay_init(c.to_gmarker)
+    end
   end
 end
