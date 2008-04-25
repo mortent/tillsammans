@@ -1,22 +1,27 @@
 /*********** STRUCTURE ***********/
-
-html,body { margin:0; padding:0 }
-div#header { width: 100%; height: 19%; line-height: 19%; background-color: #000; }
-div#wrapper { float: right; width: 100%; margin-left:-38%px }
-div#side { float: left; width: 36%; padding: 1% 0 1% 1%; }
-div#content { margin-left: 38%; min-height: 450px;}
-div#map { height: 500px; width: 100%; }
-div#footer { clear: both; width: 98%; line-height:25px; height:25px; background-color: #000; padding: 0 1%; }
+* { padding: 0px; margin: 0px; border: 0px; }
+html,body { margin:0; padding:0; border: 0; }
+div#outer { width: 955px; height: 630px; padding: 20px 20px; margin: 0;}
+div#inner { width: 955px; height: 630px; }
+div#header { width: 955px; height: 130px; }
+div#outerWrapper { width: 950px; height: 485px; background-color: white; padding: 5px 5px; }
+div#innerWrapper { width: 950px; height: 485px; padding: 0; }
+div#side { float: left; width: 335px; height: 485px; padding: 0; }
+div#content { margin-left: 340px; width: 610px; height: 485px; padding: 0; }
+div#map { height: 485px; width: 610px; }
+div#loginOrUser { position:absolute; left:20px; top: 20px; color: white;}
+div#loginOrUser img { float: left; border: 1px solid white; padding: 0; margin-right: 20px;}
+img#logo { float: right; margin:0; padding: 30px 20px 0 0;}
 
 /*********** CONTENT ***********/
 
-div#content { background-color: #847363; font-size: 1em;}
-div#content td { font-size: 0.8em;}
+div#content { font-size: 1em; background: white; }
+div#content td { font-size: 0.8em; }
 div#content a { color: #847363; background-color: #1b0d00; font-size: 1em; padding: 1px;}
 
-
-div#loginOrUser { position:absolute; right:15px; top: 0px; line-height: 50px; }
-div#footer p { color: #847363; }
+div#loginOrUser { font-family: Verdana; font-size: 11px; color: #857362; }
+div#loginOrUser h1 { font-family: Georgia; font-size: 12px;}
+div#loginOrUser input { background: #0d0502; line-height: 11px; border: 1px solid white; color: white; }
 
 ul.headerMenu { list-style: none; }
 ul.headerMenu li { display: block; padding-left: 15px; float: left;}
@@ -24,23 +29,29 @@ p {color: #c5beb4; }
 
 /*********** COMMON ***********/
 
+div#outer {
+    background-color: #0d0502;
+	background-image: url('/images/body-bg.gif');
+	background-repeat: no-repeat;
+	background-position: top right;	
+}
+
 body {
-	background-color: #1b0d00;
-	background-image: url('/images/page_bkg.jpg');
-	background-repeat: repeat-x;
-	background-position: top left;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 0.69em;
 	color: #261c02; 
 }
 
-* {
-	padding: 0px; 
-	margin: 0px;
-	border: 0px;
+
+
+input { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: #261c02;
+	border: 1px white;
 }
-h1, h2, h3, h4
-{
+
+h1, h2, h3, h4 {
 	font-family: Georgia, Times New Roman, Serif;
 	font-weight: normal;
 }
@@ -52,19 +63,12 @@ h2 {
 	font-size: 200%;
 	line-height: 1.1em;
 }
-h3 
-{
+h3 {
 	font-size: 140%;
 	color: #847363;
 	line-height: 1.1em;
 }
-h4
-{
-	font-size: 100%;
-	color: #847363;
-	line-height: 1.1em;
-}
-
+h4 {
 a {
 	color: #019ab6;
 	text-decoration: none;
@@ -72,34 +76,19 @@ a {
 a:hover {
 	color: #f04e52;
 }
-
-ol
-{
+ol {
 	margin: 0 0 0 2em;
 }
-ol li 
-{
+ol li {
 	margin-bottom: 1em;
 }
-
-
 ul { 
 	list-style: none; 
 }
-
-input { 
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 1em;
-	color: #261c02;
-}
-
-.print 
-{
+.print {
 	display: none;
 }
-
 .forAccessibilityOnly { position: absolute; left: -5000px; top: -5000px; }
-
 p.ingress {
 	font-size: 180%;
 	line-height: 120%;

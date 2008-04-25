@@ -1,41 +1,43 @@
 <html>
   <head>
     <%= GMap.header %>
-		<%= stylesheet_link_tag 'tillsammans' %>
+    <%= stylesheet_link_tag 'tillsammans' %>
   </head>
   <body>
-		<div id="container">
-			<div id="header">
-				<a href="/"><img src="/images/bekktillsammans.png" alt="Tillsammans" border="0"/></a>
-				<div id="loginOrUser">
-					<% unless @current_user %>
-					<ul class="headerMenu">
-						<li><a href="#">Arrangementer</a></li>
-						<li><a href="#">Mennesker</a></li>
-						<li><a href="#">Innstillinger</a></li>
-						<li><a href="#">Logg ut</a></li>
-					</ul>
-					<% else %>
-						<form>
-							Login <input type="text" size="8"/> 
-							Password <input type="password" size="8">
-						  <input type="button" value="log in">
-						</form>
-					<% end %>
-				</div>
-			</div>
-			<div id="wrapper">
-				<div id="side">
-					<h3>content for sidebar</h3>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce ut nisl in ante iaculis fermentum. Ut convallis. Mauris id mauris. Aliquam quis est. Vestibulum eu leo. Fusce in sem. Nulla eleifend convallis tellus. Pellentesque at lectus. Fusce ut sapien vitae velit rhoncus fermentum. Mauris in elit ac libero interdum fringilla. Vestibulum rutrum, ante vel porttitor euismod, lorem turpis malesuada leo, et cursus sapien leo euismod arcu.
-</p><p>
-					Nunc ipsum tellus, porta sed, ullamcorper venenatis, accumsan ac, lorem. Integer id metus. Proin erat enim, facilisis eu, placerat at, nonummy nec, mi. Proin malesuada auctor enim. Nulla facilisi. Sed et magna. Mauris nonummy risus eget justo. Suspendisse potenti. Nunc rhoncus lectus a lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent feugiat turpis at lectus. Aenean sodales sollicitudin elit. Mauris enim diam, dignissim eget, euismod ac, blandit a, nibh. Ut orci velit, fermentum vitae, pretium semper, venenatis eu, nunc. Mauris eu ipsum ac nisl pharetra varius. Nam fringilla diam et erat. Vestibulum eu sapien.</p>
-				</div>				
-				<div id="content">
-  				<%= yield %>
-				</div>
-			</div>
-			<div id="footer">BEKKUNIN prosjekt!</div>
-		</div>
+    <div id="outer">
+      <div id="inner">
+        <div id="header">
+          <a href="/"><img id="logo" src="/images/bekktillsammans.png" alt="Tillsammans" border="0"/></a>
+          <div id="loginOrUser">
+            <img src="/images/user.png" width="90" height="110" />
+            <% unless @current_user %>
+            <h1>user Lykketoft Christensen</h1>
+            <form>
+              Login <input type="text" size="8"/> 
+              Password <input type="password" size="8">
+              <input type="button" value="log in">
+            </form>
+            <% else %>
+              <h1>Mogens Lykketoft Christensen</h1>
+              <form>
+                User Name <input type="text" size="8"/> 
+                Password <input type="password" size="8">
+                <input type="button" value="log in">
+              </form>
+            <% end %>
+          </div>
+        </div>
+        <div id="outerWrapper">
+          <div id="innerWrapper">
+            <div id="side">
+              Her skal flex-komponenten!
+            </div>        
+            <div id="content">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
   </body>
 </html>
