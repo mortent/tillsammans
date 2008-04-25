@@ -4,8 +4,10 @@
 class ApplicationController < ActionController::Base
   layout "tillsammans"
   helper :all # include all helpers, all the time
+  include AuthenticatedSystem
+  
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => 'fd657d308d3f3fabdb0be37587c173c6'
+  # protect_from_forgery # :secret => 'fd657d308d3f3fabdb0be37587c173c6'
 end

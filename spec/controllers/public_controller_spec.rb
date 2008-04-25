@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PublicController do
+  fixtures :maps
 
   #Delete these examples and add some real ones
   it "should use PublicController" do
