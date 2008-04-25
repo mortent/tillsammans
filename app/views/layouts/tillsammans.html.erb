@@ -10,19 +10,19 @@
           <a href="/"><img id="logo" src="/images/bekktillsammans.png" alt="Tillsammans" border="0"/></a>
           <div id="loginOrUser">
             <img src="/images/user.png" width="90" height="110" />
-            <% unless @current_user %>
-            <h1>user Lykketoft Christensen</h1>
-            <form>
-              Login <input type="text" size="8"/> 
-              Password <input type="password" size="8">
-              <input type="button" value="log in">
-            </form>
+            <% if @current_user %>
+              <h1><%= @current_user.name %></h1>                        
+              <% form_for(@current_user) do |f| %>
+                Lokasjon <%= f.text_field :location %>
+                Melding <%= f.text_area :message %>
+              <% end %>            
             <% else %>
-              <h1>Mogens Lykketoft Christensen</h1>
               <form>
-                User Name <input type="text" size="8"/> 
-                Password <input type="password" size="8">
-                <input type="button" value="log in">
+                <table cellspacing="5">
+                  <tr><td>Brukernavn</td><td><input type="text" size="12"/></td></tr>
+                  <tr><td>Passord</td><td><input type="password" size="12"></td></tr>
+                  <tr><td></td><td><input type="button" value="Logg inn"></td></tr>
+                </table>
               </form>
             <% end %>
           </div>
