@@ -1,23 +1,26 @@
 /*********** STRUCTURE ***********/
 * { padding: 0px; margin: 0px; border: 0px; }
 html,body { margin:0; padding:0; border: 0; }
-div#outer { width: 955px; height: 630px; padding: 20px 20px; margin: 0;}
-div#inner { width: 955px; height: 630px; }
-div#header { width: 955px; height: 130px; }
-div#outerWrapper { width: 950px; height: 485px; background-color: white; padding: 5px 5px; }
-div#innerWrapper { width: 950px; height: 485px; padding: 0; }
+div#outer { width: 97%; height: 630px; padding: 1%; margin: 0;}
+div#inner { width: 100%; height: 630px; }
+div#header { width: 100%; height: 130px; }
+div#outerWrapper { width: 100%; height: 485px; background-color: white; padding: 5px 5px; }
+div#innerWrapper { width: 100%; height: 485px; padding: 0; }
 div#side { float: left; width: 335px; height: 485px; padding: 0; }
-div#content { margin-left: 340px; width: 610px; height: 485px; padding: 0; }
-div#map { height: 485px; width: 610px; }
-div#loginOrUser { position:absolute; left:20px; top: 20px; color: white;}
-div#loginOrUser img { float: left; border: 1px solid white; padding: 0; margin-right: 20px;}
+div#content { margin-left: 340px; width: auto; height: 485px; padding: 0; }
+div#map { height: 485px; width: auto; }
+div#loginOrUser { position:absolute; left: 1%; top: 20px; color: white;}
+div#loginOrUser img { float: left; border: 1px solid white; padding: 0; margin-right: 15px;}
 img#logo { float: right; margin:0; padding: 30px 20px 0 0;}
 
 /*********** CONTENT ***********/
 
 div#content { font-size: 1em; background: white; }
 div#content td { font-size: 0.8em; }
-div#content a { color: #847363; background-color: #1b0d00; font-size: 1em; padding: 1px;}
+div#content a {  color: #fff; /* color: #847363;*/ background-color: #1b0d00; font-size: 1em; padding: 1px;}
+
+/* XXX: ugly hack to make some air in the content :) -oc */
+div#content * { padding: 1px; }
 
 div#loginOrUser * { font-family: Verdana; font-size: 11px; color: #857362; }
 div#loginOrUser h1 { line-height: 30px; text-transform:uppercase; font-family: Georgia; font-size: 12px;}
@@ -31,13 +34,13 @@ p {color: #c5beb4; }
 /*********** COMMON ***********/
 
 div#outer {
-    background-color: #0d0502;
-	background-image: url('/images/body-bg.gif');
-	background-repeat: no-repeat;
-	background-position: top right;	
 }
 
 body {
+    background-color: #0d0502;
+	background-image: url('/images/body-bg.gif');
+	background-repeat: no-repeat;
+	background-position: top right;	    
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 0.69em;
 	color: #261c02; 

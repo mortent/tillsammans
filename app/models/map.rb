@@ -7,7 +7,7 @@ class Map < ActiveRecord::Base
         
     gm = GMap.new(@@default_name)
     gm.control_init(opts)
-    gm.set_map_type_init(GMapType::G_HYBRID_MAP)
+    #gm.set_map_type_init(GMapType::G_HYBRID_MAP)
     gm.center_zoom_init([lat, lng], zoom)
     gm
   end

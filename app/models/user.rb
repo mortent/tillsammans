@@ -1,5 +1,9 @@
 require 'digest/sha1'
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base  
+  belongs_to :location
+  has_many :attendances
+  has_many :events, :through => :attendances
+    
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 
@@ -8,7 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
-  validates_length_of       :login,    :within => 3..40
+  validates_length_of       :login,    :within => 2..40
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   before_save :encrypt_password
@@ -66,7 +70,14 @@ class User < ActiveRecord::Base
   def recently_activated?
     @activated
   end
-
+  
+  def to_gmarker
+    icon = GIcon.new(:image => '/images/ikon_bekker.png', :icon_size => GSize.new( 24,32 ), 
+            :icon_anchor => GPoint.new(16,16), :info_window_anchor => GPoint.new(16,16))     
+    GMarker.new([location.lat, location.lng], :title => login, :icon => icon, 
+            :info_window => "<b>#{login}</b><br/>#{email}<br>")  
+  end   
+  
   protected
     # before filter 
     def encrypt_password
