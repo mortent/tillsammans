@@ -1,12 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
-<<<<<<< HEAD:config/routes.rb
-=======
   map.resource :session
 
-
->>>>>>> FETCH_HEAD:config/routes.rb
   map.resources :clients #, :path_prefix => '/admin', :name_prefix => 'admin_'
   map.resources :events #, :path_prefix => '/admin', :name_prefix => 'admin_'
   map.resources :maps #, :path_prefix => '/admin', :name_prefix => 'admin_'
