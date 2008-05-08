@@ -31,7 +31,7 @@ describe ClientsController do
   describe "route recognition" do
 
     it "should generate params { :controller => 'clients', action => 'index' } from GET /clients" do
-      params_from(:get, "/admin/clients").should == {:controller => "clients", :action => "index"}
+      params_from(:get, "/clients").should == {:controller => "clients", :action => "index"}
     end
   
     it "should generate params { :controller => 'clients', action => 'new' } from GET /clients/new" do

@@ -1,15 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  description: MyText
-  lat: 1.5
-  lng: 1.5
-  zoom: 1
+oslo:
+  name: Oslo
+  description: Oslo sentrum..
+  lat: 59.92
+  lng: 10.749
+  zoom: 12
 
-two:
-  name: MyString
-  description: MyText
-  lat: 1.5
-  lng: 1.5
-  zoom: 1
