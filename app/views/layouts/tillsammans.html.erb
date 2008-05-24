@@ -17,13 +17,7 @@
                 Melding <%= f.text_area :message %>
               <% end %>            
             <% else %>
-              <form>
-                <table cellspacing="5">
-                  <tr><td>Brukernavn</td><td><input type="text" size="12"/></td></tr>
-                  <tr><td>Passord</td><td><input type="password" size="12"></td></tr>
-                  <tr><td></td><td><input type="button" value="Logg inn"></td></tr>
-                </table>
-              </form>
+              <%= render :partial=>'sessions/new'%> 
             <% end %>
           </div>
         </div>
