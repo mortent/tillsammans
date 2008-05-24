@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#28211A, #030000]">
+	<mx:Style source="style.css"/>
+	<mx:Script>
+		<![CDATA[
+			import mx.effects.easing.Elastic;
+			import mx.effects.easing.Circular;
+			import mx.effects.easing.Bounce;
+			import mx.utils.ArrayUtil;
+			public var test:String;
+			private function onChange(event:Event):void
+			{
+				/*if(meetingList.selectedIndex==0)
+				{
+					peopleList.dataProvider=peopleM1;		
+				}
+				if(meetingList.selectedIndex==1)
+				{
+					peopleList.dataProvider=peopleM2;		
+				}
+				if(meetingList.selectedIndex==2)
+				{
+					peopleList.dataProvider=peopleM3;		
+				}*/
+			}
+			
+			private var meetings:XML = 
+			<meetings>
+				<meeting>
+					<time>15:00</time>
+					<title>Faggruppe</title>
+				</meeting>
+			</meetings>
+			private var peopleM1:Array = new Array("Klara", "Calle", "Ole Christian");
+			private var peopleM2:Array = new Array("Torbjørn", "Anders", "Stian");
+			private var peopleM3:Array = new Array("Live", "Mikael", "Per");
+		]]>
+	</mx:Script>
+	
+	<!-- Define one view state, in addition to the base state.-->
+    <mx:states>
+        <mx:State name="Details">
+            <mx:AddChild relativeTo="{meetingHeader}" position="after">
+                <mx:target>
+	                <mx:Text id="details" x="39" y="46" text="Vi snekkrer vider på tillsammans-prosjektet. Ta med hammer krut og gott humør, så skal vi nok få dette til!" color="#9B8D7E" fontSize="16" width="256" fontStyle="italic"/>
+                </mx:target>
+            </mx:AddChild>
+            <mx:SetProperty target="{meetingExpander}" name="label" value="-"/>
+        </mx:State>
+    </mx:states>
+
+    <mx:transitions>
+        <!-- Define the transition from the base state to the Register state.-->
+        <mx:Transition id="toDetails" fromState="*" toState="Details">
+            <mx:Sequence targets="{[details, meetingElement, meetingHeader, meetingTitle]}">
+                <mx:AddChildAction/>
+                <mx:Resize target="{meetingElement}" duration="500" easingFunction="{ Circular.easeOut }"/>
+            </mx:Sequence>
+        </mx:Transition>
+
+        <!-- Define the transition from the Register state to the base state.-->
+        <mx:Transition id="toDefault" fromState="Details" toState="*">
+            <mx:Sequence targets="{[details, meetingElement, meetingHeader, meetingTitle]}">
+                <mx:RemoveChildAction/>
+                <mx:Parallel>
+	                <mx:Resize target="{meetingElement}"/>
+	                <mx:Fade alphaFrom="0" alphaTo="1" target="{ meetingElement}"/>
+                </mx:Parallel>
+                <mx:AddChildAction/>
+            </mx:Sequence>
+        </mx:Transition>
+	</mx:transitions>
+
+	
+	<mx:Grid width="967" height="600" themeColor="#979EA2" backgroundColor="#1C1510" borderStyle="solid" borderThickness="5" borderColor="#FFFFFF" verticalCenter="-74" horizontalCenter="-19" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:GridRow width="100%" height="100%">
+			<mx:GridItem width="100%" height="100%">
+				<mx:TabNavigator width="315" height="585">
+					<mx:VBox label="IDAG" x="2" y="-9" height="560" width="318" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+						<mx:VBox id="meetingElement" horizontalAlign="center">
+ 							<mx:Canvas width="314" height="39" id="meetingHeader" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+								<mx:LinkButton x="11" y="10" label="+" fontSize="20" fontWeight="bold" color="#FFFFFF" textRollOverColor="#FFFFFF" id="meetingExpander" click="currentState='Details'"/>
+								<mx:Text x="253" y="13" text="16:30" id="meetingTime" color="#9B8D7E" fontSize="15" textAlign="right"/>
+								<mx:LinkButton x="30" y="13" label="Møte 1" fontSize="14" styleName="LinkButton" color="#019AB6" textRollOverColor="#019AB6" fontWeight="bold" id="meetingTitle" click="currentState='Details'"/>
+							</mx:Canvas>
+						</mx:VBox>
+						<mx:Text width="100%" textAlign="center" text="----------------------------------------------------------------------" color="#9B8D7E"/>
+					</mx:VBox>
+
+					<mx:Canvas label="I MORGEN" width="100%" height="100%">
+					</mx:Canvas>
+					
+					<mx:Canvas label="KALENDER" width="100%" height="100%">
+						<mx:DateChooser firstDayOfWeek="1" width="283" height="231" styleName="dateChooserHeader" x="16" y="18" />
+					</mx:Canvas>
+					
+				</mx:TabNavigator>
+			</mx:GridItem>
+			<mx:GridItem width="642" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				<mx:Image width="698" height="699" source="kart.jpg" />
+			</mx:GridItem>
+		</mx:GridRow>
+	</mx:Grid>
+	
+</mx:Application>
