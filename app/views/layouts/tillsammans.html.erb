@@ -2,6 +2,22 @@
   <head>
     <%= GMap.header %>
     <%= stylesheet_link_tag 'tillsammans' %>
+    <link rel="stylesheet" type="text/css" href="/flex/history/history.css" />
+    <script src="/flex/AC_OETags.js" language="javascript"></script>
+    <script src="/flex/history/history.js" language="javascript"></script>
+    <script language="JavaScript" type="text/javascript">
+    <!--
+    // -----------------------------------------------------------------------------
+    // Globals
+    // Major version of Flash required
+    var requiredMajorVersion = ${version_major};
+    // Minor version of Flash required
+    var requiredMinorVersion = ${version_minor};
+    // Minor version of Flash required
+    var requiredRevision = ${version_revision};
+    // -----------------------------------------------------------------------------
+    // -->
+    </script>
   </head>
   <body>
     <div id="outer">
@@ -17,14 +33,14 @@
                 Melding <%= f.text_area :message %>
               <% end %>            
             <% else %>
-              <%= render :partial=>'sessions/new'%> 
+              <%= render :partial => 'sessions/new' %> 
             <% end %>
           </div>
         </div>
         <div id="outerWrapper">
           <div id="innerWrapper">
             <div id="side">
-              <iframe src ="/public/bin/tillsammans.html" width="100%"></iframe>
+              <%= render :partial => 'flex/main' %>
             </div>        
             <div id="content">
               <%= yield %>
