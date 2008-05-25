@@ -11,6 +11,8 @@ global
 	controlBarStyleName: richTextEditorControlBar;
 	titleStyleName: richTextEditorTitle;
 	fontFamily: Georgia;
+	horizontalScrollPolicy: off;
+	verticalScrollPolicy: off;
 }
 
 .richTextEditorTextArea
@@ -42,6 +44,7 @@ TabNavigator
 	firstTabStyleName: tabNavigatorFirstTab;
 	lastTabStyleName: tabNavigatorLastTab;
 }
+
 Canvas
 {
 	border-bottom: solid;
@@ -61,8 +64,8 @@ Canvas
 	fillColors: #514A3F, #1C1510;
 	color: #FEFDFD;
 	fontSize: 12;
-	paddingLeft: 15;
-	paddingRight: 15;
+	padding-left: 15;
+	padding-right: 15;
 }
 
 DateChooser {
@@ -97,6 +100,58 @@ DateChooser {
    horizontal-gap: 50;
    padding-bottom: 30;
 }
+
+Canvas.attendant
+{
+	backgroundColor: #F7F6F5;
+	padding-bottom: 5;
+	padding-top: 5;
+}
+
+Text.attendantName
+{
+	fontFamily: Arial;
+	fontSize: 13;
+	color: #019AB6;
+	padding-top: 5;
+	padding-bottom: -5;
+}
+
+Text.attendantLocation
+{
+	fontFamily: Arial;
+	font-style: italic;
+	fontSize: 10;
+	color: #857362;
+}
+
+Panel {
+   borderAlpha: 0.82;
+   borderThicknessLeft: 0;
+   borderThicknessTop: 0;
+   borderThicknessBottom: 2;
+   borderThicknessRight: 0;
+   roundedBottomCorners: false;
+   cornerRadius: 0;
+   headerHeight: 30;
+   backgroundAlpha: 1;
+   highlightAlphas: 0, 0;
+   headerColors: #806e5e, #998b7c;
+   dropShadowEnabled: false;
+   shadowDistance: 6;
+   shadowDirection: right;
+   titleStyleName: "mypanelTitle";
+}
+
+.mypanelTitle {
+   color: #ffffff;
+   textAlign: center;
+   fontFamily: Georgia;
+   fontSize: 12;
+   fontWeight: normal;
+}
+
+
 
 
 
