@@ -3,34 +3,77 @@
 	<mx:Style source="style.css"/>
 	<mx:Script>
 		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.controls.Image;
+			import mx.collections.XMLListCollection;
 			import mx.effects.easing.Elastic;
 			import mx.effects.easing.Circular;
 			import mx.effects.easing.Bounce;
 			import mx.utils.ArrayUtil;
-			public var test:String;
-			private function onChange(event:Event):void
-			{
-				/*if(meetingList.selectedIndex==0)
-				{
-					peopleList.dataProvider=peopleM1;		
+			
+			[Bindable]
+			private var attendants:Array = new Array(10);
+			
+			public var teststring:String = 'start';
+			
+			private function createAttendant(name:String, location:String, pictureUrl:String):void {
+				teststring = "JAGGU";
+				var attendant:Canvas = new Canvas();
+				attendant.styleName = "attendant";
+				var thumb:Image = new Image();
+				thumb.source = pictureUrl;
+				attendant.addChild(thumb);
+				var attendantName:Text = new Text()
+				attendantName.text = name;
+				attendant.addChild(attendantName);
+				var attendantLocation:Text = new Text();
+				attendantLocation.text = location;
+				attendant.addChild(attendantLocation);
+				attendants = new Array(attendant,attendants);
+				
+			}
+
+			
+			private function toggleEvent():void {
+				teststring = "toggled";
+				if(currentState=='Details') {
+					currentState = ''	
+				} else {
+					currentState = 'Details'
 				}
-				if(meetingList.selectedIndex==1)
-				{
-					peopleList.dataProvider=peopleM2;		
-				}
-				if(meetingList.selectedIndex==2)
-				{
-					peopleList.dataProvider=peopleM3;		
-				}*/
 			}
 			
-			private var meetings:XML = 
-			<meetings>
-				<meeting>
+			private function createEvent():void {
+				var canvas:Canvas = new Canvas();
+				canvas.id = "meetingHeader";
+				canvas.styleName = "meetingHEader";
+				canvas.horizontalScrollPolicy="off";
+				canvas.verticalScrollPolicy="off";
+				
+				<!--mx:Canvas width="100%" height="39" id="meetingHeader" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+								<mx:LinkButton x="11" y="10" label="+" fontSize="20" fontWeight="bold" color="#FFFFFF" textRollOverColor="#FFFFFF" id="meetingExpander" click="toggleEvent()"/>
+								<mx:Text x="253" y="13" text="16:30" id="meetingTime" color="#9B8D7E" fontSize="15" textAlign="right"/>
+								<mx:LinkButton x="30" y="13" label="Møte 1" fontSize="14" styleName="LinkButton" color="#019AB6" textRollOverColor="#019AB6" fontWeight="bold" id="meetingTitle" click="currentState='Details'" width="68.030304" height="25.984848"/>
+							</mx:Canvas-->
+			}
+			
+			[Bindable]
+			public var events:XMLListCollection = new XMLListCollection(new XMLList());
+			
+			private var eventXml:XML = 
+			<events>
+				<event>
+					<title>Faggruppemøte</title>
 					<time>15:00</time>
-					<title>Faggruppe</title>
-				</meeting>
-			</meetings>
+					<details>Faggruppemøte for Utviklingsarkitektur</details>
+				</event>
+				<event>
+					<title>Tillsammansmøte</title>
+					<time>16:30</time>
+					<details>Vi snekkrer videre på tillsammans-prosjektet. Ta med hammer krut og gott humør, så skal vi nok få dette til!</details>
+				</event>
+			</events>
+			
 			private var peopleM1:Array = new Array("Klara", "Calle", "Ole Christian");
 			private var peopleM2:Array = new Array("Torbjørn", "Anders", "Stian");
 			private var peopleM3:Array = new Array("Live", "Mikael", "Per");
@@ -42,10 +85,11 @@
         <mx:State name="Details">
             <mx:AddChild relativeTo="{meetingHeader}" position="after">
                 <mx:target>
-	                <mx:Text id="details" x="39" y="46" text="Vi snekkrer vider på tillsammans-prosjektet. Ta med hammer krut og gott humør, så skal vi nok få dette til!" color="#9B8D7E" fontSize="16" width="256" fontStyle="italic"/>
+	                <mx:Text id="details" x="39" y="46" text="Vi snekkrer videre på tillsammans-prosjektet. Ta med hammer krut og gott humør, så skal vi nok få dette til!" color="#9B8D7E" fontSize="16" width="256" fontStyle="italic"/>
                 </mx:target>
             </mx:AddChild>
             <mx:SetProperty target="{meetingExpander}" name="label" value="-"/>
+            <mx:SetProperty target="{attendantItem}" name="width" value="200"/>
         </mx:State>
     </mx:states>
 
@@ -53,35 +97,38 @@
         <!-- Define the transition from the base state to the Register state.-->
         <mx:Transition id="toDetails" fromState="*" toState="Details">
             <mx:Sequence targets="{[details, meetingElement, meetingHeader, meetingTitle]}">
-                <mx:AddChildAction/>
                 <mx:Resize target="{meetingElement}" duration="500" easingFunction="{ Circular.easeOut }"/>
+                <mx:Resize target="{attendantItem}" duration="500" easingFunction="{ Circular.easeOut }"/>
             </mx:Sequence>
         </mx:Transition>
 
         <!-- Define the transition from the Register state to the base state.-->
         <mx:Transition id="toDefault" fromState="Details" toState="*">
             <mx:Sequence targets="{[details, meetingElement, meetingHeader, meetingTitle]}">
-                <mx:RemoveChildAction/>
-                <mx:Parallel>
-	                <mx:Resize target="{meetingElement}"/>
-	                <mx:Fade alphaFrom="0" alphaTo="1" target="{ meetingElement}"/>
-                </mx:Parallel>
-                <mx:AddChildAction/>
+                <mx:Resize target="{meetingElement}" duration="500" easingFunction="{ Circular.easeIn }"/>
+                <mx:Resize target="{attendantItem}" duration="500" easingFunction="{ Circular.easeIn }"/>
             </mx:Sequence>
         </mx:Transition>
 	</mx:transitions>
 
-	
-	<mx:Grid width="967" height="600" themeColor="#979EA2" backgroundColor="#1C1510" borderStyle="solid" borderThickness="5" borderColor="#FFFFFF" verticalCenter="-74" horizontalCenter="-19" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:GridRow width="100%" height="100%">
-			<mx:GridItem width="100%" height="100%">
-				<mx:TabNavigator width="315" height="585">
-					<mx:VBox label="IDAG" x="2" y="-9" height="560" width="318" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-						<mx:VBox id="meetingElement" horizontalAlign="center">
- 							<mx:Canvas width="314" height="39" id="meetingHeader" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-								<mx:LinkButton x="11" y="10" label="+" fontSize="20" fontWeight="bold" color="#FFFFFF" textRollOverColor="#FFFFFF" id="meetingExpander" click="currentState='Details'"/>
-								<mx:Text x="253" y="13" text="16:30" id="meetingTime" color="#9B8D7E" fontSize="15" textAlign="right"/>
-								<mx:LinkButton x="30" y="13" label="Møte 1" fontSize="14" styleName="LinkButton" color="#019AB6" textRollOverColor="#019AB6" fontWeight="bold" id="meetingTitle" click="currentState='Details'"/>
+	<mx:Grid width="967" height="492" themeColor="#979EA2" backgroundColor="#1C1510" borderStyle="solid" borderThickness="5" borderColor="#FFFFFF" verticalCenter="-74" horizontalCenter="-19" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:GridRow width="100%" height="100%" backgroundColor="white" paddingLeft="0" paddingRight="0">
+			<mx:GridItem width="100%" height="100%" backgroundColor="white">
+				<mx:TabNavigator width="300" height="585">
+					<mx:VBox label="I DAG" x="2" y="-9" height="100%" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+						<mx:VBox id="meetingElement" horizontalAlign="center" width="100%">
+ 							<mx:Canvas width="100%" height="39" id="meetingHeader" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+								<mx:LinkButton x="11" y="10" label="+" fontSize="20" fontWeight="bold" color="#FFFFFF" textRollOverColor="#FFFFFF" id="meetingExpander" click="toggleEvent()"/>
+								<mx:Text x="250" y="13" text="16:30" id="meetingTime" color="#9B8D7E" fontSize="15" textAlign="right"/>
+								<mx:LinkButton x="30" y="13" label="Møte 1" fontSize="14" styleName="LinkButton" color="#019AB6" textRollOverColor="#019AB6" fontWeight="bold" id="meetingTitle" click="toggleEvent();createAttendant('Torbjorn', 'Norwegian', 'torbjorn.jpg');createAttendant('Torbjorn', 'Norwegian', 'torbjorn.jpg')" width="68.030304" height="25.984848"/>
+							</mx:Canvas>
+						</mx:VBox>
+						<mx:Text width="100%" textAlign="center" text="----------------------------------------------------------------------" color="#9B8D7E"/>
+						<mx:VBox id="meetingElement2" horizontalAlign="center" width="100%">
+ 							<mx:Canvas width="100%" height="39" id="meetingHeader2" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+								<mx:LinkButton x="11" y="10" label="+" fontSize="20" fontWeight="bold" color="#FFFFFF" textRollOverColor="#FFFFFF" id="meetingExpander2" click="toggleEvent()"/>
+								<mx:Text x="250" y="13" text="16:30" id="meetingTime2" color="#9B8D7E" fontSize="15" textAlign="right"/>
+								<mx:LinkButton x="30" y="13" label="Møte 1" fontSize="14" styleName="LinkButton" color="#019AB6" textRollOverColor="#019AB6" fontWeight="bold" id="meetingTitle2" click="toggleEvent()" width="68.030304" height="25.984848"/>
 							</mx:Canvas>
 						</mx:VBox>
 						<mx:Text width="100%" textAlign="center" text="----------------------------------------------------------------------" color="#9B8D7E"/>
@@ -96,7 +143,30 @@
 					
 				</mx:TabNavigator>
 			</mx:GridItem>
-			<mx:GridItem width="642" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:GridItem id="attendantItem" width="0" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="white">
+				<mx:Panel id="attendantPanel" width="100%" height="100%" title="HVEM SKAL DIT?">
+				<!--mx:Text width="100%" textAlign="center" text="attendants: {attendants.length} -> {teststring}"/-->
+					<mx:Canvas width="100%" styleName="attendant" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+						<mx:HBox width="100%" height="47" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+							<mx:Image width="43" height="50" source="torbjorn.jpg"/>
+							<mx:VBox width="100%">
+								<mx:Text text="Torbjørn Vatn" styleName="attendantName"/>
+								<mx:Text text="Norwegian" styleName="attendantLocation"/>	
+							</mx:VBox>
+						</mx:HBox>
+					</mx:Canvas>
+					<mx:Canvas width="100%" styleName="attendant" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+						<mx:HBox width="100%" height="47" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+							<mx:Image width="43" height="50" source="klara.jpg"/>
+							<mx:VBox width="100%">
+								<mx:Text text="Klara Rohlin" styleName="attendantName"/>
+								<mx:Text text="NAV" styleName="attendantLocation"/>	
+							</mx:VBox>
+						</mx:HBox>
+					</mx:Canvas>
+				</mx:Panel>
+			</mx:GridItem>
+			<mx:GridItem width="663" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<mx:Image width="698" height="699" source="kart.jpg" />
 			</mx:GridItem>
 		</mx:GridRow>
