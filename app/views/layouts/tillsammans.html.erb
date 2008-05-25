@@ -2,10 +2,10 @@
   <head>
     <%= GMap.header %>
     <%= stylesheet_link_tag 'tillsammans' %>
-    <link rel="stylesheet" type="text/css" href="/flex/history/history.css" />
-    <script src="/javascripts/AC_OETags.js" language="javascript"></script>
-    <script src="/javascripts/history/history.js" language="javascript"></script>
-    <script src="/javascripts/flex_global.js" language="javascript"></script>
+    <%= stylesheet_link_tag 'history.css' %>
+    <%= javascript_include_tag "AC_OETags.js" %>
+    <%= javascript_include_tag "history.js" %>
+    <%= javascript_include_tag "flex_global.js" %>
     <%= javascript_include_tag "prototype" %>
   </head>
   <body>
