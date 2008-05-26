@@ -16,6 +16,9 @@ namespace :vlad do
   end  
    
   task :deploy => [:setup, :update, :db_config, :migrate]
+  
+  desc "Restart servers"
+  task :restart => [:stop, :start]
 end
 
 set :web_command, "sudo /usr/sbin/apache2ctl"
