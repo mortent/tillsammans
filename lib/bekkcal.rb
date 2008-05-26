@@ -1,0 +1,5 @@
+require 'bekkcal/reader'
+require 'bekkcal/bekk'
+require 'bekkcal/time_ext'
+require 'bekkcal/string_ext'
+require 'bekkcal/vpim_patch'
