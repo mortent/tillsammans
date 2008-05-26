@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_id: 1
+  location_id: 1
+  leaves_at: 2008-05-26 23:45:55
+  number_of_seats: 1
+
+two:
+  event_id: 1
+  location_id: 1
+  leaves_at: 2008-05-26 23:45:55
+  number_of_seats: 1
