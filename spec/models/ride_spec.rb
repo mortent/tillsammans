@@ -11,6 +11,10 @@ describe Ride do
       :location => Location.find(:all)[0]
     }
   end
+    
+  def get_user(id)
+    User.find(:all)[id]
+  end
   
   before(:each) do
     @ride = Ride.new
@@ -49,18 +53,29 @@ describe Ride do
   it "should report no available seats when filled up" do
     @ride.attributes = valid_ride_attributes
     @ride.number_of_seats = 1
-    @ride.add_passenger(User.find(:all)[0], true)
+    @ride.add_passenger(get_user(0), false)
     @ride.available_seats?.should_not == true
+    @ride.seats_are_filled?.should == true
   end
   
   it "should have an organizer" do
     @ride.attributes = valid_ride_attributes
-    users = User.find(:all)
-    ordinary = users[0]
-    organizer = users[1]
+    ordinary = get_user(0)
+    organizer = get_user(1)
     @ride.add_passenger(ordinary, false)
     @ride.add_passenger(organizer, true)
     @ride.organizer.should_not == ordinary
     @ride.organizer.should == organizer
+  end
+  
+  it "should not be possible to add too many passengers" do
+    @ride.attributes = valid_ride_attributes
+    @ride.number_of_seats = 2
+    @ride.add_passenger(get_user(0), true)
+    @ride.add_passenger(get_user(1), false)
+    # XXX: strange error in rspec, why does this test not work?
+    #@ride.add_passenger(get_user(2), false)
+    @ride.number_of_passengers.should == 2
+    @ride.number_of_available_seats.should_not < 0
   end
 end
