@@ -1,4 +1,6 @@
 class Location < ActiveRecord::Base
+  has_many :rides
+  
   @@country = 'Norway'
   
   acts_as_mappable

@@ -2,6 +2,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base  
   belongs_to :location
   has_many :attendances
+  has_many :passengers
   has_many :events, :through => :attendances
     
   # Virtual attribute for the unencrypted password

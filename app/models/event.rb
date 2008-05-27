@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :location
   has_many :attendances
+  has_many :rides
   has_many :users, :through => :attendances
   
   def to_gmarker
