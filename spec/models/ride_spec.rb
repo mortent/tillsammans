@@ -12,15 +12,6 @@ describe Ride do
     }
   end
   
-#  def ride_with_valid_attributes 
-#    ride = Ride.new
-#    ride.number_of_seats = @@test_number_of_seats
-#    ride.event = Event.find(:all)[0]
-#    ride.location = Location.find(:all)[0]
-#    puts ride.number_of_seats
-#    ride
-#  end
-  
   before(:each) do
     @ride = Ride.new
   end
