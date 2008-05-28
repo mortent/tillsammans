@@ -35,7 +35,6 @@ package valueobjects
 			
 			id = event.id;
 			title = event.name;
-			//time = "10:10";
 			var timeString:String = event["starts-at"];
 			var matches:Array = timeString.match("[0-9]{2}:[0-9]{2}:[0-9]{2}");
 			var formatter:DateFormatter = new DateFormatter();

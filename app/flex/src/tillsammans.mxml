@@ -3,12 +3,12 @@
 	 xmlns:mx="http://www.adobe.com/2006/mxml" 
 	 layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
 	  backgroundGradientColors="[#28211A, #030000]" xmlns:renderers="renderers.*" xmlns:panels="panels.*" creationComplete="init()">
-	<mx:Style source="style.css"/>
+	<mx:Style source="flex.css"/>
 	<mx:Script>
 		<![CDATA[
 			import mx.rpc.events.ResultEvent;
 			import flash.sampler.NewObjectSample;
-			import valueobjects.EmployeeVO;
+			import valueobjects.UserVO;
 			import valueobjects.EventVO;
 			import mx.collections.ArrayCollection;
 			import mx.binding.utils.BindingUtils;
@@ -41,19 +41,19 @@
 
 			private function onEventServiceResult(event:ResultEvent):void
 			{
-				var employee:EmployeeVO = new EmployeeVO();
+				var employee:UserVO = new UserVO();
 					employee.displayName="Torbjørn";
 					employee.imageUrl="torbjorn.jpg";
 					employee.location="Norwegian";
 					employee.status="Jeg har bestillt taxi"
 					
-				var employee2:EmployeeVO = new EmployeeVO();
+				var employee2:UserVO = new UserVO();
 					employee2.displayName="Klara";
 					employee2.imageUrl="klara.jpg";
 					employee2.location="NAV";
 					employee2.status="Jeg er med";
 					
-				var employee3:EmployeeVO = new EmployeeVO();
+				var employee3:UserVO = new UserVO();
 					employee3.displayName="Calle";
 					employee3.imageUrl="torbjorn.jpg";
 					employee3.location="Statens Vegvesen";
@@ -61,7 +61,9 @@
 				for each(var eventObject:XML in event.result.event)
 				{ 
 					var eventthe:EventVO = new EventVO(eventObject);
-					
+					for each(var userObject:XML in eventObject.user) {
+						
+					}
 					/*eventthe.participants.addItem(employee);
 					if(eventthe.id=="2")
 						eventthe.participants.addItem(employee2);
@@ -75,7 +77,7 @@
 	
 	<mx:HTTPService 
 		id="eventService" 
-		url="{localUrl}" 
+		url="{remoteUrl}" 
 		resultFormat="e4x" result="onEventServiceResult(event)" >
 	</mx:HTTPService>
 	
