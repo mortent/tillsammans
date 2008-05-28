@@ -34,7 +34,7 @@ class Event < ActiveRecord::Base
     end
   end
   
-  def register_ride(user, number_of_seats)
+  def register_ride(user, number_of_seats=4)
     rides << ride = Ride.create!(:event => self, :location => user.location, :number_of_seats => number_of_seats)
     ride.add_passenger(user, true)
     ride
@@ -58,6 +58,16 @@ class Event < ActiveRecord::Base
     end
     nil
   end
+  
+  def get_rides_for_location(location)
+    location_rides = []
+    rides.each do |ride|
+      location_rides << ride if ride.location == location
+    end
+    location_rides
+  end
+  
+  
   
   # deprecated, ride should be fetched based on a user's location
   def get_ride_with_available_seats

@@ -11,6 +11,23 @@ class Ride < ActiveRecord::Base
     passengers << Passenger.create!(:ride => self, :user => user, :is_organizer => is_organizer)
   end
   
+  def remove_passenger(user)
+    keepers = []
+    passengers.each do |passenger|
+      if passenger.user == user 
+        passenger.destroy 
+        if passenger.is_organizer?
+          self.passengers = []
+          self.destroy
+          return nil
+        end
+      else
+        keepers << passenger
+      end
+    end
+    self.passengers = keepers
+  end
+  
   def number_of_passengers
     passengers.size
   end

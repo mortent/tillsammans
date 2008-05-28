@@ -86,4 +86,26 @@ describe Ride do
     loner = get_user(4)
     @ride.has_user?(loner).should_not == true
   end
+  
+  it "should remove requested passengers when requested" do 
+    @ride.attributes = valid_ride_attributes
+    user = get_user(1)
+    @ride.add_passenger(get_user(2), true)
+    @ride.add_passenger(user)
+    @ride.number_of_passengers.should == 2
+    @ride.remove_passenger(user)
+    @ride.number_of_passengers.should == 1
+  end
+  
+  it "should remove all passengers when and destroy ride when organizer is removed" do
+    @ride.attributes = valid_ride_attributes
+    organizer = get_user(1)
+    @ride.add_passenger(organizer, true)
+    @ride.add_passenger(get_user(2))
+    @ride.add_passenger(get_user(3))
+    @ride.number_of_passengers.should == 3
+    @ride.remove_passenger(organizer).should == nil
+    # sets passengers to zero, but in reality the record should be deleted from the database
+    @ride.number_of_passengers.should == 0
+  end
 end
