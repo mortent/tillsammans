@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	  horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	currentState="{ApplicationModel.DEFAULT_STATE}" creationComplete="init()"  width="100%" rollOverEffect="" rollOutEffect="" >
+	<mx:Script>
+		<![CDATA[
+			import event.ModelStateChangeEvent;
+			import valueobjects.EventVO;
+			import mx.core.Application;
+			import model.ApplicationModel;
+			import mx.effects.easing.Circular;
+	
+	
+			private function init():void
+			{
+			 	ApplicationModel.getInstance().addEventListener(ModelStateChangeEvent.MODEL_STATE_CHANGE_EVENT, toggleAppModelEvent);
+			}
+				
+	
+			private function toggleAppModelEvent(event:Event):void {
+				var currentEventItem:EventVO = ApplicationModel.getInstance().currentEventItem;
+				var me:EventVO = data as EventVO;
+				var myId:String = me.id;
+				
+				if(currentEventItem!=null)
+					if(currentEventItem.id!=myId) {
+						if(currentState==ApplicationModel.DETAIL_STATE) {
+							currentState = ApplicationModel.DEFAULT_STATE;
+						}
+					}
+					this.invalidateSize();
+					this.invalidateDisplayList();
+			}
+	
+		
+			private function toggleEvent():void
+			{
+				ApplicationModel.getInstance().currentEventItem = data as EventVO;
+				if(currentState == ApplicationModel.DETAIL_STATE) {
+					currentState = ApplicationModel.DEFAULT_STATE;
+					ApplicationModel.getInstance().currentState = ApplicationModel.DEFAULT_STATE;
+				} else {
+					currentState = ApplicationModel.DETAIL_STATE;
+					ApplicationModel.getInstance().currentState = ApplicationModel.DETAIL_STATE;
+				}
+					
+				
+				
+				this.invalidateSize();
+				this.invalidateDisplayList();
+			}
+			
+		]]>
+	</mx:Script>
+
+	<!-- Define one view state, in addition to the base state.-->
+    <mx:states>
+        <mx:State name="{ApplicationModel.DEFAULT_STATE}" />
+        <mx:State name="{ApplicationModel.DETAIL_STATE}">
+            <mx:AddChild relativeTo="{meetingHeader}" position="after">
+                <mx:target>
+	                <mx:Text paddingLeft="20" id="details" text="{data.text}" color="#9B8D7E" fontSize="16" width="250"  fontStyle="italic"/>
+                </mx:target>
+            </mx:AddChild>
+            <mx:SetProperty target="{meetingExpander}" name="text" value="-"/>
+        </mx:State>
+    </mx:states>
+
+    <mx:transitions>
+        <!-- Define the transition from the base state to the Register state.-->
+        <mx:Transition id="toDetails" fromState="*" toState="{ApplicationModel.DETAIL_STATE}">
+                <mx:Resize target="{this}" duration="500" easingFunction="{ Circular.easeOut }"/>
+        </mx:Transition>
+
+        <!-- Define the transition from the Register state to the base state.-->
+        <mx:Transition id="toDefault" fromState="{ApplicationModel.DETAIL_STATE}" toState="*">
+                <mx:Resize target="{this}" duration="500" easingFunction="{ Circular.easeIn }"/>
+        </mx:Transition>
+	</mx:transitions>
+
+	<mx:VBox width="100%" >
+		<mx:HBox width="100%" id="meetingHeader" >
+			<mx:Label  width="30" text="+" fontSize="20" fontWeight="bold" color="#FFFFFF" id="meetingExpander"  click="toggleEvent()" />
+			<mx:Label text="{data.title}"  fontSize="14" width="200" color="#019AB6" fontWeight="bold" id="meetingTitle" click="toggleEvent()"/>
+			<mx:Spacer width="100%"/>
+			<mx:Label text="{data.time}" id="meetingTime" color="#9B8D7E" fontSize="15" textAlign="right"/>
+		</mx:HBox>
+		<mx:Text width="100%" textAlign="center" text="--------------------------------------------------" color="#9B8D7E"/>
+	</mx:VBox>
+</mx:Canvas>
+	
