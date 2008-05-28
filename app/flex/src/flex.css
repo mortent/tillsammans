@@ -1,10 +1,4 @@
 /* CSS file */
-LinkButton
-{
-    overSkin: Embed("transparentSkin.gif");
-    downSkin: Embed("transparentSkin.gif");
-}
-
 global
 {
 	textAreaStyleName: richTextEditorTextArea;
