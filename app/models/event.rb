@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
             :info_window => "<b>#{name}</b><br/>#{description}<br>#{location.street}")  
   end   
    
-  def self.load_events_from_bekk_calendar    
+  def self.load_events_from_pulic_bekk_calendar    
     User.find(:all).each do |user|
       username = user.mail_username
       password = user.mail_password
@@ -28,10 +28,10 @@ class Event < ActiveRecord::Base
           event.ends_at = ical_event.dtend
           event.location = Location.find_by_name("BEKK") #event.location
           
-          event.save          
+          event.save
         end
       end
     end
   end
-       
+         
 end
