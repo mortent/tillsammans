@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   layout "tillsammans"
   helper :all # include all helpers, all the time
   include AuthenticatedSystem
+  filter_parameter_logging :password
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
