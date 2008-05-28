@@ -13,3 +13,8 @@ aaron:
   created_at: <%= 1.days.ago.to_s :db %>
 
 
+aaron:
+  id: 3
+  login: scarlett
+  email: scarlett@hottie.com
+  created_at: <%= 3.days.ago.to_s :db %>
