@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="0" height="100%" title="HVEM SKAL DIT?" 
+	currentState="{ApplicationModel.getInstance().currentState}">
+	
+	<mx:Script>
+    	<![CDATA[
+    		import model.ApplicationModel;
+    		import mx.effects.easing.Circular;
+    	]]>
+    </mx:Script>
+
+	<!-- Define one view state, in addition to the base state.-->
+    <mx:states>
+        <mx:State name="{ApplicationModel.DEFAULT_STATE}" />
+        <mx:State name="{ApplicationModel.DETAIL_STATE}">
+            <mx:SetProperty target="{this}" name="width" value="200"/>
+        </mx:State>
+    </mx:states>
+
+    <mx:transitions>
+        <!-- Define the transition from the base state to the Register state.-->
+        <mx:Transition id="toDetails" fromState="*" toState="{ApplicationModel.DETAIL_STATE}">
+                <mx:Resize target="{this}" duration="500" easingFunction="{ Circular.easeOut }"/>
+        </mx:Transition>
+
+        <!-- Define the transition from the Register state to the base state.-->
+        <mx:Transition id="toDefault" fromState="{ApplicationModel.DETAIL_STATE}" toState="*">
+                <mx:Resize target="{this}" duration="500" easingFunction="{ Circular.easeIn }"/>
+        </mx:Transition>
+	</mx:transitions>
+
+	<mx:List id="ansattListe" 
+		dataProvider="{ApplicationModel.getInstance().currentEventItem.participants}" 
+		itemRenderer="renderers.AttendantItemRenderer" variableRowHeight="true" backgroundAlpha="0" borderThickness="0" width="100%" height="100%" />
+
+</mx:Panel>

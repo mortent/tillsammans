@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events type="array">
+  <event>
+    <created-at type="datetime">2008-03-25T00:51:41+01:00</created-at>
+    <description>Fagdag p&#229; Skuret!</description>
+    <ends-at type="datetime">2008-04-24T18:00:00+02:00</ends-at>
+    <id type="integer">1</id>
+    <location-id type="integer">1</location-id>
+    <name>Fagdag</name>
+    <starts-at type="datetime">2008-04-24T08:00:00+02:00</starts-at>
+    <updated-at type="datetime">2008-03-25T00:51:41+01:00</updated-at>
+  </event>
+  <event>
+    <created-at type="datetime">2008-03-25T10:08:15+01:00</created-at>
+    <description>Oc, Torbj&#248;rn og Mikael stiller. Nokon andre?</description>
+    <ends-at type="datetime">2008-03-25T17:00:00+01:00</ends-at>
+    <id type="integer">2</id>
+    <location-id type="integer">1</location-id>
+    <name>Hackekveld</name>
+    <starts-at type="datetime">2008-03-25T16:00:00+01:00</starts-at>
+    <updated-at type="datetime">2008-03-25T10:08:15+01:00</updated-at>
+  </event>
+  <event>
+    <created-at type="datetime">2008-03-25T21:28:33+01:00</created-at>
+    <description>Fagdag p&#229; BEKK</description>
+    <ends-at type="datetime">2008-04-24T18:00:00+02:00</ends-at>
+    <id type="integer">3</id>
+    <location-id type="integer">1</location-id>
+    <name>Fagdag</name>
+    <starts-at type="datetime">2008-04-24T08:00:00+02:00</starts-at>
+    <updated-at type="datetime">2008-03-25T21:28:33+01:00</updated-at>
+  </event>
+  <event>
+    <created-at type="datetime">2008-05-09T13:08:25+02:00</created-at>
+    <description>Vi skal grille!</description>
+    <ends-at type="datetime">2008-05-09T16:00:00+02:00</ends-at>
+    <id type="integer">4</id>
+    <location-id type="integer">1</location-id>
+    <name>Grillpartay</name>
+    <starts-at type="datetime">2008-05-09T16:00:00+02:00</starts-at>
+    <updated-at type="datetime">2008-05-09T13:08:25+02:00</updated-at>
+  </event>
+</events>
