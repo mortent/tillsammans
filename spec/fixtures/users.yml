@@ -17,10 +17,18 @@ aaron:
   created_at: <%= 1.days.ago.to_s :db %>
 
 
-aaron:
+scarlett:
   id: 3
   login: scarlett
   email: scarlett@hottie.com
   salt: e3c4e014e50bfdd35dba0930901d9c8a5039f301
   crypted_password: 718070e4692a38d064373abac8d6b3012c2f6fe8 # test
+  created_at: <%= 3.days.ago.to_s :db %>
+
+hertis:
+  id: 4
+  login: hertis
+  email: hertis@turbo.no
+  salt: 92c07baa798827b9d6cb499f784b2014386622ae
+  crypted_password: e9d0f39550df9d05a793f341824fa43954ce9794
   created_at: <%= 3.days.ago.to_s :db %>

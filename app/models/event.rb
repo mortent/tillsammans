@@ -33,5 +33,29 @@ class Event < ActiveRecord::Base
       end
     end
   end
-         
+  
+  def register_ride(user, number_of_seats)
+    rides << ride = Ride.create!(:event => self, :location => user.location, :number_of_seats => number_of_seats)
+    ride.add_passenger(user, true)
+  end
+  
+  def get_ride_with_available_seats
+    rides.each do |ride|
+      return ride if ride.available_seats?
+    end
+    nil
+  end
+
+  # not recommended, add passengers directly to ride
+  def register_passenger_to_available_ride(user)
+    ride = get_ride_with_available_seats
+    ride.add_passenger(user) if ride
+  end
+  
+  def ride_has_user?(user)
+    rides.each do |ride|
+      return true if ride.has_user?(user)
+    end
+    return false
+  end
 end

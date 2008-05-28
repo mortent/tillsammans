@@ -13,7 +13,7 @@ describe Ride do
   end
     
   def get_user(id)
-    User.find(:all)[id]
+    User.find(id)
   end
   
   before(:each) do
@@ -37,8 +37,8 @@ describe Ride do
   
   it "should register passengers" do
     @ride.attributes = valid_ride_attributes
-    @ride.add_passenger(get_user(0), true)
     @ride.add_passenger(get_user(1), true)
+    @ride.add_passenger(get_user(2), true)
     @ride.number_of_passengers.should == 2
   end
   
@@ -52,14 +52,14 @@ describe Ride do
   it "should report no available seats when filled up" do
     @ride.attributes = valid_ride_attributes
     @ride.number_of_seats = 1
-    @ride.add_passenger(get_user(0), false)
+    @ride.add_passenger(get_user(1), false)
     @ride.available_seats?.should_not == true
   end
   
   it "should have an organizer" do
     @ride.attributes = valid_ride_attributes
-    ordinary = get_user(0)
-    organizer = get_user(1)
+    ordinary = get_user(1)
+    organizer = get_user(2)
     @ride.add_passenger(ordinary, false)
     @ride.add_passenger(organizer, true)
     @ride.organizer.should_not == ordinary
@@ -69,11 +69,21 @@ describe Ride do
   it "should not be possible to add too many passengers" do
     @ride.attributes = valid_ride_attributes
     @ride.number_of_seats = 2
-    @ride.add_passenger(get_user(0), true)
-    @ride.add_passenger(get_user(1), false)
-    # XXX: strange error in rspec, why does this test not work?
+    @ride.add_passenger(get_user(1), true)
     @ride.add_passenger(get_user(2), false)
+    @ride.add_passenger(get_user(3), false)
     @ride.number_of_passengers.should == 2
     @ride.number_of_available_seats.should_not < 0
+  end
+  
+  it "should report if a user is getting a ride" do
+    @ride.attributes = valid_ride_attributes
+    user = get_user(1)
+    @ride.add_passenger(get_user(2), true)
+    @ride.add_passenger(user, false)
+    @ride.add_passenger(get_user(3), false)
+    @ride.has_user?(user).should == true
+    loner = get_user(4)
+    @ride.has_user?(loner).should_not == true
   end
 end

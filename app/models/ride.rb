@@ -29,4 +29,11 @@ class Ride < ActiveRecord::Base
     end
     nil
   end
+  
+  def has_user? user
+    passengers.each do |passenger|
+      return true if passenger.user == user
+    end
+    false
+  end
 end
