@@ -39,6 +39,14 @@ class Event < ActiveRecord::Base
     ride.add_passenger(user, true)
   end
   
+  def get_ride_with_available_seats_for_location(location)
+    rides.each do |ride|
+      return ride if ride.location == location and ride.available_seats?
+    end
+    nil
+  end
+  
+  # deprecated, ride should be fetched based on a user's location
   def get_ride_with_available_seats
     rides.each do |ride|
       return ride if ride.available_seats?
@@ -48,7 +56,7 @@ class Event < ActiveRecord::Base
 
   # not recommended, add passengers directly to ride
   def register_passenger_to_available_ride(user)
-    ride = get_ride_with_available_seats
+    ride = get_ride_with_available_seats_for_location(user.location)
     ride.add_passenger(user) if ride
   end
   
