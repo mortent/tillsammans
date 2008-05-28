@@ -1,4 +1,10 @@
 <div id="loginDiv">
+<div id="loginMessageDiv">
+  <%= @message %>
+</div>
+<SCRIPT type="text/javascript">
+<%= visual_effect :fade, 'loginMessageDiv', {:delay => 5.0} %>
+</SCRIPT>
 <% form_remote_tag :url => session_path,
                    :update => "loginDiv",
                    :complete => "top" do -%>

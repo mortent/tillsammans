@@ -6,21 +6,16 @@
     <%= javascript_include_tag "AC_OETags.js" %>
     <%= javascript_include_tag "history.js" %>
     <%= javascript_include_tag "flex_global.js" %>
-    <%= javascript_include_tag "prototype" %>
+    <%= javascript_include_tag :defaults %>
   </head>
   <body>
     <div id="outer">
       <div id="inner">
         <div id="header">
           <a href="/"><img id="logo" src="/images/bekktillsammans.png" alt="Tillsammans" border="0"/></a>
-          <div id="loginOrUser">
-            <img src="/images/user.png" width="90" height="110" />
-            <% if @current_user %>
-              <h1><%= @current_user.name %></h1>                        
-              <% form_for(@current_user) do |f| %>
-                Lokasjon <%= f.text_field :location %>
-                Melding <%= f.text_area :message %>
-              <% end %>            
+          <div id="loginOrUser">           
+            <% if @user %>
+              <%= render :partial => 'sessions/logged_in' %>
             <% else %>
               <%= render :partial => 'sessions/new' %> 
             <% end %>

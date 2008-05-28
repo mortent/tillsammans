@@ -1,4 +1,1 @@
-<div id="loginDiv">
-  Velkommen <%= @user.login %>
-  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %>
-</div>
+<%= render :partial => 'sessions/logged_in' %>
