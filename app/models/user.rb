@@ -78,6 +78,31 @@ class User < ActiveRecord::Base
             :info_window => "<b>#{login}</b><br/>#{email}<br>")  
   end   
   
+  def update_from_personal_bekk_calendar
+    host = 'hugin.bekk.no'
+    ics = Bekkcal::Reader.personal(host, mail_username, mail_password)
+    if ics
+      cal = Vpim::Icalendar.decode(ics).first.components do |ical_event|
+        next if ical_event.summary.nil? || ical_event.summary.strip == ""
+        
+        puts "-----------------------"
+        event_name = ical_event.summary
+        puts event_name
+        
+        event = Event.find_by_name(event_name)
+
+        if event.nil?
+          event = Event.create!(:name => ical_event.summary, :description => ical_event.description || "", :starts_at => ical_event.dtstart, :ends_at => ical_event.dtend, :location => Location.find_by_name("BEKK"))
+        end
+        
+        attendance = Attendance.new(:event => event, :user => self)
+        event.attendances << attendance
+        event.save!
+      end      
+    end
+  end
+  
+  
   protected
     # before filter 
     def encrypt_password
@@ -89,6 +114,5 @@ class User < ActiveRecord::Base
     def password_required?
       crypted_password.blank? || !password.blank?
     end
-    
-    
+        
 end
