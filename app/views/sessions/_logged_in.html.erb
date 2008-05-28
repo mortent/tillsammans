@@ -1,0 +1,5 @@
+<div id="loginDiv">
+  <img src="http://nanna.bekk.no:4806/employees/<%= @user.bekk_id %>.jpeg" width="90" height="110" />
+  <span>Velkommen <%= @user.login %></span><br/>
+  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %>
+</div>
