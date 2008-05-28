@@ -37,15 +37,14 @@ describe Ride do
   
   it "should register passengers" do
     @ride.attributes = valid_ride_attributes
-    @ride.add_passenger(User.find(:all)[0], true)
-    @ride.number_of_passengers.should == 1
-    @ride.add_passenger(User.find(:all)[1], true)
+    @ride.add_passenger(get_user(0), true)
+    @ride.add_passenger(get_user(1), true)
     @ride.number_of_passengers.should == 2
   end
   
   it "should report number of available seats correctly" do
     @ride.attributes = valid_ride_attributes
-    @ride.add_passenger(User.find(:all)[0], true)
+    @ride.add_passenger(get_user(2), true)
     @ride.number_of_passengers.should == 1
     @ride.number_of_available_seats.should == @@test_number_of_seats-1
   end
@@ -55,7 +54,6 @@ describe Ride do
     @ride.number_of_seats = 1
     @ride.add_passenger(get_user(0), false)
     @ride.available_seats?.should_not == true
-    @ride.seats_are_filled?.should == true
   end
   
   it "should have an organizer" do
@@ -74,7 +72,7 @@ describe Ride do
     @ride.add_passenger(get_user(0), true)
     @ride.add_passenger(get_user(1), false)
     # XXX: strange error in rspec, why does this test not work?
-    #@ride.add_passenger(get_user(2), false)
+    @ride.add_passenger(get_user(2), false)
     @ride.number_of_passengers.should == 2
     @ride.number_of_available_seats.should_not < 0
   end
