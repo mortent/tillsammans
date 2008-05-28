@@ -50,6 +50,17 @@ describe Event do
     @event.ride_has_user?(organizer).should == true
     @event.ride_has_user?(loner).should_not == true
   end
+  
+  it "should be possible to remove a ride and all its passengers" do
+    organizer = get_organizer
+    ride = @event.register_ride(organizer, 3)
+    ride.should_not == nil
+    ride.add_passenger(get_user(1))
+    ride.add_passenger(get_user(2))
+    @event.get_ride_with_available_seats_for_location(organizer.location)
+    @event.cancel_ride_by_organizer(ride.organizer)
+    @event.rides.size.should == 0
+  end
 
   private
   

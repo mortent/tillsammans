@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :location
   has_many :attendances
-  has_many :rides
+  has_many :rides, :dependent => :destroy
   has_many :users, :through => :attendances
   
   def to_gmarker
@@ -37,6 +37,19 @@ class Event < ActiveRecord::Base
   def register_ride(user, number_of_seats)
     rides << ride = Ride.create!(:event => self, :location => user.location, :number_of_seats => number_of_seats)
     ride.add_passenger(user, true)
+    ride
+  end
+  
+  def cancel_ride_by_organizer(organizer) 
+    keepers = []
+    rides.each do |ride|
+      if ride.organizer == organizer 
+        ride.destroy 
+      else
+        keepers << ride
+      end
+    end
+    self.rides = keepers
   end
   
   def get_ride_with_available_seats_for_location(location)
