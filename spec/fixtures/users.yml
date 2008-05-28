@@ -23,6 +23,4 @@ hertis:
   id: 4
   login: hertis
   email: hertis@turbo.no
-  salt: 92c07baa798827b9d6cb499f784b2014386622ae
-  crypted_password: e9d0f39550df9d05a793f341824fa43954ce9794
   created_at: <%= 3.days.ago.to_s :db %>
