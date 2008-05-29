@@ -14,9 +14,11 @@ class UsersController < ApplicationController
     user.update_attributes(:location_id => params[:user][:location_id], :message => params[:user][:message])
     if user.save
       self.current_user = user
-      render :text => "user updated" 
+      @message = "Vellyket lagring"
+      render :action => "updated"
     else
-      render :text => "user update failed"
+      @message = "Lagring feilet"
+      render :action => "updated"
     end
   end
 

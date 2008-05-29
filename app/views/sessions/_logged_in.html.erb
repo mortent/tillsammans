@@ -1,23 +1,27 @@
 <div id="loginDiv">
   <img src="http://nanna.bekk.no:4806/employees/<%= @user.bekk_id %>.jpeg" width="90" height="110" />
-  <span>Velkommen <%= @user.login %></span><br/>
-  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %><br/>
   <% remote_form_for :user, @user, :url => user_path(@user), :method => :put do |f| %>
     
     <p>
-    <label for="location">Location</label><br/>
-    <%= select :user, :location_id, @locations.collect {|l|[l.name,l.id]}, {:include_blank => true} %>
+    <label for="location">Sted</label><br/>
+    <%= select :user, :location_id, @locations.collect {|l|[l.name,l.id]}, {:include_blank => true}, {:id => "location_select"} %>
+    </p>
+    
+    <p style="margin-top:0.5em;margin-bottom:0.5em;">
+    <label for="message">Melding</label><br/>
+    <%= f.text_area :message, :id => "message_textarea" %>
     </p>
     
     <p>
-    <label for="message">Message</label><br/>
-    <%= f.text_field :message %>
-    </p>
-    
-    <p>
-    <%= submit_tag 'Save' %>
+<%  #  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %><br/> %>
+    <div style="width:37.5em;">  
+    </span>
+    <div style="float:right;">
+      <%= submit_tag 'Save' %>
+    </div>
+    <span id="loginDivMessage" style="display:none;">
+    </div>
     </p>
   <% end %>
-  <div id="loginDivMessage">
-  </div>
+
 </div>

@@ -5,16 +5,21 @@
 <% form_remote_tag :url => session_path,
                    :update => "loginDiv",
                    :complete => "top" do -%>
-<p><label for="login">Brukernavn</label><br/>
-<%= text_field_tag 'login' %></p>
+<p>
+  <label for="login">Brukernavn</label><br/>
+  <%= text_field_tag 'login' %>
+</p>
 
-<p><label for="password">Passord</label><br/>
-<%= password_field_tag 'password' %></p>
+<p style="margin-top:0.5em;margin-bottom:0.5em;">
+  <label for="password">Passord</label><br/>
+  <%= password_field_tag 'password' %>
+</p>
 
-<p><%= submit_tag 'Logg inn' %>
-<span id="loginMessageDiv">
-  <%= @message %>
-</span>
+<p>
+  <%= submit_tag 'Logg inn' %>
+  <span id="loginMessageDiv">
+    <%= @message %>
+    </span>
 </p>
 <% end -%>
 

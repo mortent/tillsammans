@@ -46,11 +46,30 @@ body {
 	color: #261c02; 
 }
 
-input, textarea { 
+input { 
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 1em;
 	color: black;
 	border: 1px solid black;
+}
+
+textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: black;
+	background-color: black;
+	border: 1px solid #261c02;
+	height: 3em;
+	width: 28em;
+}
+
+select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: black;
+	border: 1px solid #261c02;
+	background-color: #0d0502;
+	width: 28em;
 }
 
 h1, h2, h3, h4 {

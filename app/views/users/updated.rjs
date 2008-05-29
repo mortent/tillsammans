@@ -1,0 +1,5 @@
+page[:message_textarea].visual_effect :highlight, :startcolor => "#261c02", :endcolor => "#000000"
+page[:location_select].visual_effect :highlight, :startcolor => "#261c02", :endcolor => "#000000"
+page.replace_html 'loginDivMessage', @message
+page.visual_effect :appear, 'loginDivMessage'
+page.visual_effect :fade, 'loginDivMessage', {:delay => 5.0} 
