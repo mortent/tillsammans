@@ -3,9 +3,20 @@
   <span>Velkommen <%= @user.login %></span><br/>
   <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %><br/>
   <% remote_form_for :user, @user, :url => user_path(@user), :method => :put do |f| %>
-    Location: <%= f.text_field :location_text %><br/>
-    Message: <%= f.text_field :message %><br/>
+    
+    <p>
+    <label for="location">Location</label><br/>
+    <%= select :user, :location_id, @locations.collect {|l|[l.name,l.id]}, {:include_blank => true} %>
+    </p>
+    
+    <p>
+    <label for="message">Message</label><br/>
+    <%= f.text_field :message %>
+    </p>
+    
+    <p>
     <%= submit_tag 'Save' %>
+    </p>
   <% end %>
   <div id="loginDivMessage">
   </div>

@@ -19,7 +19,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.find(:all)
+    user =User.find_by_id(self.current_user.id)
+    @events = (user.events if user) or Event.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb

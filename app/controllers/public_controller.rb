@@ -3,6 +3,7 @@ class PublicController < ApplicationController
   # Show all events in map
   def index
     @user = self.current_user
+    @locations = Location.find(:all)
     @map = Map.find_by_name('Oslo')
     @gmap = @map.to_gmap
     Event.find(:all).each { |e| @gmap.overlay_init(e.to_gmarker) }    

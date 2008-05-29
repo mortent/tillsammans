@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     self.current_user = User.authenticate(params[:login], params[:password])
     if logged_in?
       @user = self.current_user
+      @locations = Location.find(:all)
       render :action => "login_successful"
     else
       @message = "Login failed"
@@ -20,7 +21,6 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    @message = "Logout successful"
     render :action => "logout_successful"
   end
 end

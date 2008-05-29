@@ -1,19 +1,21 @@
 <div id="loginDiv">
-<div id="loginMessageDiv">
-  <%= @message %>
-</div>
 <SCRIPT type="text/javascript">
 <%= visual_effect :fade, 'loginMessageDiv', {:delay => 5.0} %>
 </SCRIPT>
 <% form_remote_tag :url => session_path,
                    :update => "loginDiv",
                    :complete => "top" do -%>
-<p><label for="login">Login</label><br/>
+<p><label for="login">Brukernavn</label><br/>
 <%= text_field_tag 'login' %></p>
 
-<p><label for="password">Password</label><br/>
+<p><label for="password">Passord</label><br/>
 <%= password_field_tag 'password' %></p>
 
-<p><%= submit_tag 'Log in' %></p>
+<p><%= submit_tag 'Logg inn' %>
+<span id="loginMessageDiv">
+  <%= @message %>
+</span>
+</p>
 <% end -%>
+
 </div>
