@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" styleName="attendant" 
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" creationComplete="checkStatus()">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+		
+		private var status:String;
+		[Bindable]
+		private var statusVisible:Boolean = true;
+		[Bindable]
+		private var statusHeight:Number = 25;
+		
+		private function checkStatus():void {
+			
+			status = data.status;
+			if(status == null || status.length == 0) {
+				statusVisible = false;
+				statusHeight = 0;
+			}
+				
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:VBox width="100%"  backgroundColor="#F7F6F5">
+		<mx:HBox  width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:Image width="43" height="50" source="{data.imageUrl}"/>
+			<mx:VBox width="100%">
+				<mx:Text text="{data.displayName}" styleName="attendantName"/>
+				<mx:Text text="{data.location}" styleName="attendantLocation"/>	
+			</mx:VBox>
+		</mx:HBox>
+		<mx:TextArea visible="{statusVisible}" text="{data.status}" width="100%" height="{statusHeight}" borderStyle="inset" enabled="false"/>
+	</mx:VBox>
+
+</mx:Canvas>
