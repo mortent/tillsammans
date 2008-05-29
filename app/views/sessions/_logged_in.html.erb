@@ -1,4 +1,8 @@
 <div id="loginDiv">
+  <SCRIPT language='JavaScript' charset='utf-8'>
+    var x = tillsammans.fetchEvents();
+    alert(x);
+  </SCRIPT>
   <img src="http://nanna.bekk.no:4806/employees/<%= @user.bekk_id %>.jpeg" width="90" height="110" />
   <% remote_form_for :user, @user, :url => user_path(@user), :method => :put do |f| %>
     
@@ -17,7 +21,7 @@
     <div style="width:37.5em;">  
     </span>
     <div style="float:right;">
-      <%= submit_tag 'Save' %>
+      <%= submit_tag 'Oppdater' %>
     </div>
     <span id="loginDivMessage" style="display:none;">
     </div>
