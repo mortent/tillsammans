@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   
   def update
     user = User.find(params[:id])
-    user.update_attributes(:location_id => params[:user][:location_id], :message => params[:user][:message])
+    location = Location.find(params[:user][:location_id])
+    user.update_attributes(:location_id => params[:user][:location_id], :message => params[:user][:message], :location_text => location.name)
     if user.save
       self.current_user = user
       @message = "Vellyket lagring"

@@ -2,4 +2,5 @@ page[:message_textarea].visual_effect :highlight, :startcolor => "#261c02", :end
 page[:location_select].visual_effect :highlight, :startcolor => "#261c02", :endcolor => "#000000"
 page.replace_html 'loginDivMessage', @message
 page.visual_effect :appear, 'loginDivMessage'
-page.visual_effect :fade, 'loginDivMessage', {:delay => 5.0} 
+page.visual_effect :fade, 'loginDivMessage', {:delay => 5.0}
+page << "document['tillsammans'].fetchEvents();" 
