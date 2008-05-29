@@ -17,10 +17,10 @@
     </p>
     
     <p>
-<%  #  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %><br/> %>
     <div style="width:37.5em;">  
     </span>
     <div style="float:right;">
+      <%= link_to_remote 'Logg ut', :url => session_path, :method => :delete, :update => "loginDiv" %>
       <%= submit_tag 'Oppdater' %>
     </div>
     <span id="loginDivMessage" style="display:none;">
