@@ -1,5 +1,12 @@
 <div id="loginDiv">
   <img src="http://nanna.bekk.no:4806/employees/<%= @user.bekk_id %>.jpeg" width="90" height="110" />
   <span>Velkommen <%= @user.login %></span><br/>
-  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %>
+  <%= link_to_remote 'Log ut', :url => session_path, :method => :delete, :update => "loginDiv" %><br/>
+  <% remote_form_for :user, @user, :url => user_path(@user), :method => :put do |f| %>
+    Location: <%= f.text_field :location_text %><br/>
+    Message: <%= f.text_field :message %><br/>
+    <%= submit_tag 'Save' %>
+  <% end %>
+  <div id="loginDivMessage">
+  </div>
 </div>
