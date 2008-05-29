@@ -1,6 +1,21 @@
 class EventsController < ApplicationController
   #auto_complete_for :event, :location
   
+  def register_ride
+    @event = Event.find(params[:id])
+    @event.register_ride(User.find(params[:user_id]), params[:number_of_seats])
+  end
+  
+  def cancel_ride_by_organizer
+    @event = Event.find(params[:id])
+    @event.cancel_ride_by_organizer(User.find(params[:user_id]))    
+  end
+  
+  def get_location_rides
+    @event = Event.find(params[:id])
+    @event.get_rides_for_location(Location.find(params[:location_id]))
+  end
+  
   # GET /events
   # GET /events.xml
   def index

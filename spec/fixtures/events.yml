@@ -1,13 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
+  name: Fagdag
   description: MyText
+  location_id: 1
   starts_at: 2008-03-18 22:35:39
   ends_at: 2008-03-18 22:35:39
 
 two:
-  name: MyString
+  name: Fredagspils
   description: MyText
+  location_id: 2
   starts_at: 2008-03-18 22:35:39
   ends_at: 2008-03-18 22:35:39

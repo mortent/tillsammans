@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :location
   has_many :attendances
-  has_many :rides
+  has_many :rides, :dependent => :destroy
   has_many :users, :through => :attendances
   
   def to_gmarker
@@ -33,5 +33,60 @@ class Event < ActiveRecord::Base
       end
     end
   end
-         
+  
+  def register_ride(user, number_of_seats=4)
+    rides << ride = Ride.create!(:event => self, :location => user.location, :number_of_seats => number_of_seats)
+    ride.add_passenger(user, true)
+    ride
+  end
+  
+  def cancel_ride_by_organizer(organizer) 
+    keepers = []
+    rides.each do |ride|
+      if ride.organizer == organizer 
+        ride.destroy 
+      else
+        keepers << ride
+      end
+    end
+    self.rides = keepers
+  end
+  
+  def get_ride_with_available_seats_for_location(location)
+    rides.each do |ride|
+      return ride if ride.location == location and ride.available_seats?
+    end
+    nil
+  end
+  
+  def get_rides_for_location(location)
+    location_rides = []
+    rides.each do |ride|
+      location_rides << ride if ride.location == location
+    end
+    location_rides
+  end
+  
+  
+  
+  # deprecated, ride should be fetched based on a user's location
+  def get_ride_with_available_seats
+    rides.each do |ride|
+      return ride if ride.available_seats?
+    end
+    nil
+  end
+
+  # not recommended, add passengers directly to ride
+  def register_passenger_to_available_ride(user)
+    ride = get_ride_with_available_seats_for_location(user.location)
+    ride.add_passenger(user) if ride
+  end
+  
+  def ride_has_user?(user)
+    rides.each do |ride|
+      return true if ride.has_user?(user)
+    end
+    return false
+  end
 end
